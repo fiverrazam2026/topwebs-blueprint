@@ -4,70 +4,126 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TopWebs Agency Blueprint // AzamCodes</title>
-    <!-- Importing high-velocity Tailwind utility matrix directly via CDN -->
-    <script src="https://tailwindcss.com"></script>
+    <!-- Custom Fallback Stylesheet Matrix to guarantee the layout renders beautifully -->
     <style>
-        @keyframes pulseGlow {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.8; }
+        body {
+            background-color: #0d1117 !important;
+            color: #f0f6fc !important;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
-        .glow-effect { animation: pulseGlow 3s infinite; }
+        .canvas-container {
+            padding: 80px 24px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .tag-line {
+            color: #58a6ff;
+            font-family: monospace;
+            letter-spacing: 2px;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .main-heading {
+            font-size: 42px;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            margin: 0 0 24px 0;
+            color: #f0f6fc;
+        }
+        .sub-text {
+            color: #8b949e;
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 1.6;
+            margin-bottom: 48px;
+        }
+        .grid-title {
+            color: #8b949e;
+            font-family: monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+            border-top: 1px solid #21262d;
+            padding-top: 24px;
+        }
+        .card-matrix {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+        @media (min-width: 768px) {
+            .card-matrix { grid-template-columns: repeat(3, 1fr); }
+            .main-heading { font-size: 64px; }
+        }
+        .sprint-card {
+            border: 1px solid #30363d;
+            background-color: rgba(22, 27, 34, 0.5);
+            padding: 24px;
+            border-radius: 6px;
+        }
+        .card-num {
+            color: #8b949e;
+            font-family: monospace;
+            font-size: 12px;
+            display: block;
+            margin-bottom: 12px;
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0 0 8px 0;
+            color: #f0f6fc;
+        }
+        .card-desc {
+            color: #8b949e;
+            font-size: 14px;
+            line-height: 1.4;
+            margin: 0;
+        }
     </style>
 </head>
-<body class="bg-[#0d1117] text-white font-sans antialiased selection:bg-cyan-500/30">
+<body>
 
     <!-- 📋 MINIMALIST HERO CANVAS SECTION -->
-    <section class="min-h-screen flex flex-col justify-center px-6 md:px-24 relative overflow-hidden border-b border-zinc-800/50">
-        <!-- Structural architectural lines -->
-        <div class="absolute top-0 left-1/4 w-[1px] h-full bg-zinc-800/20 hidden md:block"></div>
-        <div class="absolute top-0 left-2/3 w-[1px] h-full bg-zinc-800/20 hidden md:block"></div>
-        
-        <div class="z-10 max-w-4xl space-y-6">
-            <p class="text-cyan-400 font-mono tracking-widest text-xs uppercase glow-effect">
-                // System Architecture Blueprint
-            </p>
-            <h1 class="text-4xl md:text-7xl font-bold tracking-tight leading-none text-zinc-100">
-                WE DESIGN SYSTEM EXPERIENCES.
-            </h1>
-            <p class="text-zinc-400 text-base md:text-xl max-w-xl font-light leading-relaxed">
-                High-performance frameworks built with modular clarity, client-side velocity, and zero server maintenance overhead.
-            </p>
-        </div>
-        
-        <div class="absolute bottom-12 left-6 md:left-24 text-zinc-500 font-mono text-xs flex gap-8">
-            <span>EST. 2026</span>
-            <span>SCROLL TO VIEW REPOSITORY LAYOUTS ↘</span>
-        </div>
-    </section>
+    <div class="canvas-container">
+        <div class="tag-line">// System Architecture Blueprint</div>
+        <h1 class="main-heading">WE DESIGN SYSTEM EXPERIENCES.</h1>
+        <p class="sub-text">High-performance frameworks built with modular clarity, client-side velocity, and zero server maintenance overhead.</p>
 
-    <!-- 📊 SELECTED AUTOMATION SPRINT GRID -->
-    <section class="py-24 px-6 md:px-24 bg-[#0d1117]">
-        <h2 class="text-zinc-500 font-mono text-xs uppercase tracking-widest mb-12">// Selected Sprints (3)</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- 📊 SELECTED AUTOMATION SPRINT GRID -->
+        <div class="grid-title">// Selected Sprints (3)</div>
+        <div class="card-matrix">
             
             <!-- Sprint Card 1 -->
-            <div class="group p-6 border border-zinc-800/80 rounded bg-zinc-900/10 hover:border-cyan-500/40 transition-all duration-300">
-                <span class="text-zinc-600 font-mono text-xs block mb-4">01 ◆</span>
-                <h3 class="text-lg font-medium text-zinc-200">SaaS Engine Platform</h3>
-                <p class="text-zinc-400 text-sm font-light mt-2">Serverless Dashboard Architecture built for fluid international rendering speed.</p>
+            <div class="sprint-card">
+                <span class="card-num">01 ◆</span>
+                <h3 class="card-title">SaaS Engine Platform</h3>
+                <p class="card-desc">Serverless Dashboard Architecture built for fluid international rendering speed.</p>
             </div>
 
             <!-- Sprint Card 2 -->
-            <div class="group p-6 border border-zinc-800/80 rounded bg-zinc-900/10 hover:border-cyan-500/40 transition-all duration-300">
-                <span class="text-zinc-600 font-mono text-xs block mb-4">02 ◆</span>
-                <h3 class="text-lg font-medium text-zinc-200">Interactive Finance Utility</h3>
-                <p class="text-zinc-400 text-sm font-light mt-2">High-velocity data processing engines running completely client-side.</p>
+            <div class="sprint-card">
+                <span class="card-num">02 ◆</span>
+                <h3 class="card-title">Interactive Finance Utility</h3>
+                <p class="card-desc">High-velocity data processing engines running completely client-side.</p>
             </div>
 
             <!-- Sprint Card 3 -->
-            <div class="group p-6 border border-zinc-800/80 rounded bg-zinc-900/10 hover:border-cyan-500/40 transition-all duration-300">
-                <span class="text-zinc-600 font-mono text-xs block mb-4">03 ◆</span>
-                <h3 class="text-lg font-medium text-zinc-200">Global UI Design Systems</h3>
-                <p class="text-zinc-400 text-sm font-light mt-2">Pixel-perfect component isolation eliminating legacy technical debt.</p>
+            <div class="sprint-card">
+                <span class="card-num">03 ◆</span>
+                <h3 class="card-title">Global UI Design Systems</h3>
+                <p class="card-desc">Pixel-perfect component isolation eliminating legacy technical debt.</p>
             </div>
 
         </div>
-    </section>
+    </div>
 
 </body>
 </html>
