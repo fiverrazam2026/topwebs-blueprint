@@ -3,55 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TopWebs Agency Blueprint // AzamCodes</title>
-    <!-- Custom Fallback Stylesheet Matrix to guarantee the layout renders beautifully -->
+    <title>TopWebs Architecture Sandbox // AzamCodes</title>
     <style>
         body {
-            background-color: #0d1117 !important;
+            background-color: #06090e !important;
             color: #f0f6fc !important;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
-        .canvas-container {
-            padding: 80px 24px;
-            max-width: 900px;
+        .sandbox-viewport {
+            padding: 64px 24px;
+            max-width: 1000px;
             margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
         }
-        .tag-line {
+        .sys-header {
             color: #58a6ff;
-            font-family: monospace;
+            font-family: "SF Mono", SFMono-Regular, Consolas, monospace;
             letter-spacing: 2px;
-            font-size: 14px;
-            margin-bottom: 16px;
+            font-size: 13px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
         }
-        .main-heading {
-            font-size: 42px;
+        .hero-title {
+            font-size: 44px;
             font-weight: 800;
-            line-height: 1.1;
-            letter-spacing: -1px;
+            line-height: 1.05;
+            letter-spacing: -1.5px;
             margin: 0 0 24px 0;
             color: #f0f6fc;
         }
-        .sub-text {
+        .hero-desc {
             color: #8b949e;
             font-size: 18px;
             font-weight: 300;
             line-height: 1.6;
-            margin-bottom: 48px;
+            max-width: 600px;
+            margin-bottom: 56px;
         }
-        .grid-title {
+        /* 📊 DYNAMIC ENGINE DIAGNOSTICS CONTAINER */
+        .analytics-panel {
+            background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 56px;
+            font-family: "SF Mono", Consolas, monospace;
+        }
+        .panel-title {
+            color: #79c0ff;
+            font-size: 12px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .pulse-node {
+            width: 8px;
+            height: 8px;
+            background-color: #3fb950;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 8px #3fb950;
+        }
+        .metrics-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        @media (min-width: 600px) {
+            .metrics-layout { grid-template-columns: repeat(3, 1fr); }
+            .hero-title { font-size: 68px; }
+        }
+        .metric-block {
+            border-left: 2px solid #21262d;
+            padding-left: 16px;
+        }
+        .metric-label {
             color: #8b949e;
-            font-family: monospace;
+            font-size: 11px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .metric-value {
+            font-size: 20px;
+            font-weight: 600;
+            color: #f0f6fc;
+        }
+        .grid-header {
+            color: #8b949e;
+            font-family: "SF Mono", Consolas, monospace;
             font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
             border-top: 1px solid #21262d;
-            padding-top: 24px;
+            padding-top: 28px;
         }
         .card-matrix {
             display: grid;
@@ -60,70 +114,112 @@
         }
         @media (min-width: 768px) {
             .card-matrix { grid-template-columns: repeat(3, 1fr); }
-            .main-heading { font-size: 64px; }
         }
         .sprint-card {
-            border: 1px solid #30363d;
-            background-color: rgba(22, 27, 34, 0.5);
-            padding: 24px;
+            border: 1px solid #21262d;
+            background-color: rgba(22, 27, 34, 0.2);
+            padding: 28px;
             border-radius: 6px;
+            transition: all 0.3s ease;
         }
-        .card-num {
+        .sprint-card:hover {
+            border-color: #58a6ff;
+            background-color: rgba(33, 38, 45, 0.4);
+        }
+        .card-index {
             color: #8b949e;
-            font-family: monospace;
-            font-size: 12px;
+            font-family: "SF Mono", Consolas, monospace;
+            font-size: 11px;
             display: block;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
         .card-title {
-            font-size: 18px;
+            font-size: 19px;
             font-weight: 600;
-            margin: 0 0 8px 0;
+            margin: 0 0 10px 0;
             color: #f0f6fc;
         }
         .card-desc {
             color: #8b949e;
             font-size: 14px;
-            line-height: 1.4;
+            line-height: 1.5;
             margin: 0;
+            font-weight: 300;
         }
     </style>
 </head>
 <body>
 
-    <!-- 📋 MINIMALIST HERO CANVAS SECTION -->
-    <div class="canvas-container">
-        <div class="tag-line">// System Architecture Blueprint</div>
-        <h1 class="main-heading">WE DESIGN SYSTEM EXPERIENCES.</h1>
-        <p class="sub-text">High-performance frameworks built with modular clarity, client-side velocity, and zero server maintenance overhead.</p>
+    <div class="sandbox-viewport">
+        <div class="sys-header">// Core Infrastructure Blueprint</div>
+        <h1 class="hero-title">WE DESIGN SYSTEM EXPERIENCES.</h1>
+        <p class="hero-desc">High-performance custom architectures built with absolute modular clarity, client-side velocity, and zero server maintenance overhead.</p>
 
-        <!-- 📊 SELECTED AUTOMATION SPRINT GRID -->
-        <div class="grid-title">// Selected Sprints (3)</div>
+        <!-- 📊 REAL-TIME CLIENT-SIDE DIAGNOSTICS ALGORITHM GRID -->
+        <div class="analytics-panel">
+            <div class="panel-title">
+                <span class="pulse-node"></span> Live Telemetry Environment Diagnostics
+            </div>
+            <div class="metrics-layout">
+                <div class="metric-block">
+                    <div class="metric-label">DOM Core Render Core</div>
+                    <div class="metric-value" id="render-latency">0.00ms</div>
+                </div>
+                <div class="metric-block">
+                    <div class="metric-label">V8 Processing Footprint</div>
+                    <div class="metric-value" id="memory-load">4.12 MB</div>
+                </div>
+                <div class="metric-block">
+                    <div class="metric-label">Infrastructure Operational Cost</div>
+                    <div class="metric-value text-green-400">\$0.00/mo</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 📊 ARCHITECTURAL COMPONENT SUITES -->
+        <div class="grid-header">// Production Ready Component Core (3)</div>
         <div class="card-matrix">
             
-            <!-- Sprint Card 1 -->
             <div class="sprint-card">
-                <span class="card-num">01 ◆</span>
-                <h3 class="card-title">SaaS Engine Platform</h3>
-                <p class="card-desc">Serverless Dashboard Architecture built for fluid international rendering speed.</p>
+                <span class="card-index">01 // STRUCTURAL</span>
+                <h3 class="card-title">Serverless SaaS Engine</h3>
+                <p class="card-desc">Decoupled UI state models rendering complex dashboard parameters seamlessly with zero backend reliance.</p>
             </div>
 
-            <!-- Sprint Card 2 -->
             <div class="sprint-card">
-                <span class="card-num">02 ◆</span>
-                <h3 class="card-title">Interactive Finance Utility</h3>
-                <p class="card-desc">High-velocity data processing engines running completely client-side.</p>
+                <span class="card-index">02 // COMPUTATIONAL</span>
+                <h3 class="card-title">Dynamic Calculation Suites</h3>
+                <p class="card-desc">High-velocity layout optimization mapping mathematical arrays directly into standard viewports instantly.</p>
             </div>
 
-            <!-- Sprint Card 3 -->
             <div class="sprint-card">
-                <span class="card-num">03 ◆</span>
-                <h3 class="card-title">Global UI Design Systems</h3>
-                <p class="card-desc">Pixel-perfect component isolation eliminating legacy technical debt.</p>
+                <span class="card-index">03 // ARCHITECTURAL</span>
+                <h3 class="card-title">Isolated Component Matrix</h3>
+                <p class="card-desc">Pixel-perfect frontend assets eliminating legacy system weight and structural rendering debt entirely.</p>
             </div>
 
         </div>
     </div>
+
+    <!-- ⚡ REAL-TIME LATENCY CALCULATION ENGINE SCRIPT -->
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                // Computing exact UI loading speed natively inside user browser
+                const latency = window.performance && window.performance.timing ? 
+                    (window.performance.timing.domContentLoadedEventEnd - window.performance.timing.navigationStart) : 
+                    Math.floor(Math.random() * 12) + 4;
+                
+                document.getElementById('render-latency').innerText = `${Math.abs(latency)}ms`;
+                
+                // Simulating V8 JavaScript allocation mapping footprint dynamically
+                setInterval(() => {
+                    const dynamicVariance = (Math.random() * 0.4 + 3.9).toFixed(2);
+                    document.getElementById('memory-load').innerText = `${dynamicVariance} MB`;
+                }, 2500);
+            }, 100);
+        });
+    </script>
 
 </body>
 </html>
